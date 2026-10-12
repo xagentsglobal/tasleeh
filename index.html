@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Planned Maintenance &amp; Facility Management in Dubai | TASLEEH</title>
+    <meta
+      name="description"
+      content="One contract, one number, 17 in-house services. Planned maintenance for UAE residential, commercial and hospitality buildings. Book a free post-summer property survey."
+    />
+    <link rel="canonical" href="__SITE_URL__" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0E2A47" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TASLEEH Facilities Management" />
+    <meta property="og:locale" content="en_AE" />
+    <meta property="og:url" content="__SITE_URL__" />
+    <meta property="og:title" content="Planned Maintenance &amp; Facility Management in Dubai | TASLEEH" />
+    <meta
+      property="og:description"
+      content="One contract, one number, 17 in-house services. Planned maintenance for UAE residential, commercial and hospitality buildings. Book a free post-summer property survey."
+    />
+    <meta property="og:image" content="__OG_IMAGE__" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="TASLEEH Facilities Management — planned maintenance for UAE buildings" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Planned Maintenance &amp; Facility Management in Dubai | TASLEEH" />
+    <meta
+      name="twitter:description"
+      content="One contract, one number, 17 in-house services. Planned maintenance for UAE residential, commercial and hospitality buildings. Book a free post-summer property survey."
+    />
+    <meta name="twitter:image" content="__OG_IMAGE__" />
+
+    <!-- Hero image is the mobile and desktop LCP candidate: fetch it before JS runs. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/hero.webp"
+      imagesrcset="/hero-640.webp 640w, /hero.webp 1200w"
+      imagesizes="(min-width: 1024px) 50vw, 100vw"
+      fetchpriority="high"
+    />
+
+    <!-- Inter 400/500/600/700, loaded without blocking render -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    </noscript>
+
+    <!-- structured-data -->
+
+    <!--
+      Tracking. IDs come from VITE_GA4_ID, VITE_META_PIXEL_ID and
+      VITE_LINKEDIN_PARTNER_ID at build time; a tag with no ID never loads.
+      Stubs are defined immediately so events queue up, and the vendor
+      scripts load after the page has finished loading to protect
+      Lighthouse performance. Lead events (Meta "Lead", LinkedIn conversion)
+      fire from src/lib/analytics.js on form_submit_success.
+    -->
+    <script>
+      ;(function () {
+        var GA4_ID = '__GA4_ID__'
+        var META_PIXEL_ID = '__META_PIXEL_ID__'
+        var LINKEDIN_PARTNER_ID = '__LINKEDIN_PARTNER_ID__'
+        var queue = []
+
+        // Google Analytics 4
+        if (GA4_ID) {
+          window.dataLayer = window.dataLayer || []
+          window.gtag = function () { window.dataLayer.push(arguments) }
+          window.gtag('js', new Date())
+          window.gtag('config', GA4_ID)
+          queue.push('https://www.googletagmanager.com/gtag/js?id=' + GA4_ID)
+        }
+
+        // Meta Pixel (placeholder: set VITE_META_PIXEL_ID)
+        if (META_PIXEL_ID) {
+          !(function (f, n) {
+            if (f.fbq) return
+            n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) }
+            if (!f._fbq) f._fbq = n
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []
+          })(window)
+          window.fbq('init', META_PIXEL_ID)
+          window.fbq('track', 'PageView')
+          queue.push('https://connect.facebook.net/en_US/fbevents.js')
+        }
+
+        // LinkedIn Insight Tag (placeholder: set VITE_LINKEDIN_PARTNER_ID)
+        if (LINKEDIN_PARTNER_ID) {
+          window._linkedin_partner_id = LINKEDIN_PARTNER_ID
+          window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || []
+          window._linkedin_data_partner_ids.push(LINKEDIN_PARTNER_ID)
+          if (!window.lintrk) {
+            window.lintrk = function (a, b) { window.lintrk.q.push([a, b]) }
+            window.lintrk.q = []
+          }
+          queue.push('https://snap.licdn.com/li.lms-analytics/insight.min.js')
+        }
+
+        if (!queue.length) return
+        function load() {
+          queue.forEach(function (src) {
+            var s = document.createElement('script')
+            s.async = true
+            s.src = src
+            document.head.appendChild(s)
+          })
+        }
+        window.addEventListener('load', function () {
+          'requestIdleCallback' in window ? requestIdleCallback(load, { timeout: 3000 }) : setTimeout(load, 1500)
+        })
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"><!--app-html--></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

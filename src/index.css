@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  --color-navy: #0e2a47;
+  --color-navy-deep: #0a2038;
+  --color-amber: #f2a900;
+  /* Darker amber for use on white: large numerals and icons only (3.56:1). */
+  --color-amber-dark: #b37e00;
+  --color-concrete: #f1f3f5;
+  --color-ink: #1f2937;
+  --color-muted: #5b6675;
+  /* Muted text on navy (7.3:1). */
+  --color-mist: #aeb9c6;
+  --color-line: #dde2e8;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 88px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-amber);
+    outline-offset: 3px;
+  }
+  /* On amber surfaces the amber ring would vanish. */
+  .on-amber :focus-visible {
+    outline-color: var(--color-navy);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1160px] px-5 sm:px-6;
+  }
+  .section {
+    @apply py-16 lg:py-24;
+  }
+  .h2 {
+    @apply text-[1.75rem] leading-tight font-bold tracking-tight text-navy sm:text-[2.125rem] lg:text-[2.5rem];
+  }
+
+  /* Buttons: combine .btn with one variant, e.g. class="btn btn-primary". */
+  .btn {
+    @apply inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg px-6 text-base font-semibold
+      transition-colors duration-150;
+  }
+  .btn-primary {
+    @apply bg-amber text-navy hover:bg-navy hover:text-white;
+  }
+  /* On navy surfaces the navy hover state keeps a white edge so the button stays visible. */
+  .btn-primary.on-navy {
+    @apply hover:shadow-[inset_0_0_0_1.5px_#fff];
+  }
+  .btn-secondary {
+    @apply border-[1.5px] border-navy bg-white text-navy hover:bg-navy hover:text-white;
+  }
+  .btn-navy {
+    @apply bg-navy text-white hover:bg-white hover:text-navy;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+  .field-input {
+    @apply block min-h-[48px] w-full rounded-lg border border-[#b8c1cc] bg-white px-3.5 py-2.5 text-base text-ink
+      placeholder:text-[#6b7685] focus:border-navy focus:outline-none focus-visible:ring-0;
+  }
+  .field-input:focus-visible {
+    outline: 3px solid var(--color-amber);
+    outline-offset: 1px;
+  }
+  .field-input[aria-invalid='true'] {
+    @apply border-[#b42318];
+  }
+  .field-error {
+    @apply mt-1.5 text-sm font-medium text-[#b42318];
+  }
+}
