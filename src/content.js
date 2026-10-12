@@ -68,7 +68,7 @@ export function organizationJsonLd(siteUrl) {
     name: 'TASLEEH Facilities Management',
     parentOrganization: { '@type': 'Organization', name: 'Tiger Group' },
     url: siteUrl,
-    logo: new URL('logo-tasleeh.svg', siteUrl).href,
+    logo: new URL('brand/logo-tasleeh.png', siteUrl).href,
     telephone: PHONE_INTL,
     email: EMAIL,
     address: {

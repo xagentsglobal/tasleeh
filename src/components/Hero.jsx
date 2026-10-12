@@ -1,74 +1,94 @@
 import { forwardRef } from 'react'
+import { Phone } from 'lucide-react'
 import { PHONE_DISPLAY } from '../content.js'
-import { CallLink, SurveyLink } from './links.jsx'
+import { CallLink, Photo, SurveyButton, Tick } from './links.jsx'
 
 const stats = [
-  { value: '50 years', label: 'Tiger Holding group experience' },
-  { value: '40+', label: 'Projects delivered' },
-  { value: '14+', label: 'Key clients' },
-  { value: '17', label: 'Services in-house' },
+  { value: '50', unit: ' years', label: 'Tiger Holding group experience' },
+  { value: '40', unit: '+', label: 'Projects delivered' },
+  { value: '14', unit: '+', label: 'Key clients' },
+  { value: '17', unit: '', label: 'Services in-house' },
 ]
 
 const Hero = forwardRef(function Hero(_, ref) {
   return (
     <>
-      <section ref={ref} aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-navy text-white">
-        {/* Mobile/tablet: photo sits behind the copy under a navy overlay. Desktop: photo fills the right half. */}
-        <div className="absolute inset-0 -z-10 lg:left-1/2">
-          <img
-            src="/hero.webp"
-            srcSet="/hero-640.webp 640w, /hero.webp 1200w"
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            width="1200"
-            height="900"
-            alt="TASLEEH technician inspecting rooftop AC condenser units on a Dubai building"
-            fetchPriority="high"
-            decoding="async"
-            className="h-full w-full object-cover"
+      <section ref={ref} aria-labelledby="hero-title" className="container-wide pt-3">
+        <div className="relative isolate overflow-hidden rounded-[var(--radius-card)] bg-navy text-white">
+          <Photo
+            name="hero"
+            priority
+            sizes="(min-width: 1400px) 1376px, 100vw"
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
           />
+          {/* The one permitted gradient: hero image overlay for legibility. */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,42,71,0.88)_0%,rgba(14,42,71,0.94)_100%)] lg:bg-[linear-gradient(90deg,rgba(14,42,71,0.55)_0%,rgba(14,42,71,0)_35%)]"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(9,29,51,0.55)_0%,rgba(9,29,51,0.72)_45%,rgba(9,29,51,0.95)_100%)] lg:bg-[linear-gradient(90deg,rgba(9,29,51,0.94)_0%,rgba(9,29,51,0.78)_42%,rgba(9,29,51,0.15)_80%)]"
           />
-        </div>
 
-        <div className="container-page">
-          <div className="py-16 sm:py-20 lg:w-1/2 lg:py-28 lg:pr-12">
-            <p className="text-[0.8125rem] font-semibold tracking-[0.14em] text-amber uppercase">Post-summer property survey</p>
-            <h1 id="hero-title" className="mt-4 text-[2rem] leading-[1.15] font-bold tracking-tight sm:text-[2.5rem] lg:text-[2.875rem]">
-              Planned maintenance for UAE buildings. One contract, one number, every trade.
-            </h1>
-            <p className="mt-5 max-w-[36rem] text-[1.0625rem] leading-relaxed text-white/90 sm:text-lg">
-              Summer has just pushed your AC, electrical and plumbing systems to their limit. We'll walk your property, find
-              what it left behind, and hand you a maintenance plan that stops next summer's call-outs before they start.
-            </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-              <SurveyLink label="hero" className="btn btn-primary on-navy w-full sm:w-auto">
-                Book a post-summer survey
-              </SurveyLink>
-              <CallLink
-                location="hero"
-                className="inline-flex min-h-[44px] items-center justify-center font-semibold text-white underline decoration-1 underline-offset-4 hover:decoration-2 sm:justify-start"
+          <div className="grid min-h-[620px] items-end gap-10 px-5 pt-28 pb-6 sm:px-10 sm:pb-10 lg:min-h-[700px] lg:grid-cols-[minmax(0,1fr)_340px] lg:px-14 lg:pt-36 lg:pb-14">
+            <div className="max-w-[44rem]">
+              <p className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-[0.75rem] font-semibold tracking-[0.14em] text-amber uppercase">
+                <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
+                Post-summer property survey
+              </p>
+              <h1
+                id="hero-title"
+                className="mt-6 text-[2.25rem] leading-[1.04] font-semibold tracking-[-0.03em] text-balance sm:text-[3.25rem] lg:text-[4rem]"
               >
-                Or call {PHONE_DISPLAY}
-              </CallLink>
+                Planned maintenance for UAE buildings.{' '}
+                <span className="text-white/75">One contract, one number, every trade.</span>
+              </h1>
+              <p className="mt-6 max-w-[36rem] text-[1.0625rem] leading-relaxed text-white/85 sm:text-lg">
+                Summer has just pushed your AC, electrical and plumbing systems to their limit. We'll walk your property, find
+                what it left behind, and hand you a maintenance plan that stops next summer's call-outs before they start.
+              </p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+                <SurveyButton label="hero" className="on-navy w-full sm:w-auto">
+                  Book a post-summer survey
+                </SurveyButton>
+                <CallLink
+                  location="hero"
+                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full font-semibold text-white underline decoration-1 underline-offset-[6px] hover:decoration-2 sm:justify-start"
+                >
+                  <Phone aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={2} />
+                  Or call {PHONE_DISPLAY}
+                </CallLink>
+              </div>
+              <p className="mt-5 text-sm text-mist">For residential, commercial and hospitality buildings in the UAE.</p>
             </div>
-            <p className="mt-5 text-sm text-mist">For residential, commercial and hospitality buildings in the UAE.</p>
+
+            {/* Glass summary card, echoing the reference's floating panels */}
+            <div className="glass hidden rounded-[var(--radius-tile)] p-6 lg:block">
+              <p className="text-[0.75rem] font-semibold tracking-[0.14em] text-amber uppercase">The survey</p>
+              <ul className="mt-4 space-y-3 text-[0.9375rem] text-white">
+                {['No charge, no obligation', 'One point of contact', 'Part of Tiger Holding'].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <Tick onNavy />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      <section aria-label="TASLEEH in numbers" className="border-b border-line bg-white">
-        <div className="container-page">
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-8 py-10 sm:grid-cols-4 lg:py-12">
-            {stats.map(({ value, label }) => (
-              <div key={label} className="flex flex-col-reverse gap-1 lg:border-l lg:border-line lg:pl-6 lg:first:border-l-0 lg:first:pl-0">
-                <dt className="text-sm leading-snug text-muted">{label}</dt>
-                <dd className="text-[1.875rem] leading-none font-bold tracking-tight text-navy sm:text-4xl">{value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+      <section aria-label="TASLEEH in numbers" className="container-page">
+        <dl className="grid grid-cols-2 gap-x-6 gap-y-10 py-14 sm:grid-cols-4 lg:py-20">
+          {stats.map(({ value, unit, label }) => (
+            <div key={label} className="flex flex-col-reverse justify-end gap-2 border-l border-line pl-5 sm:pl-6">
+              <dt className="max-w-[12rem] text-sm leading-snug text-muted">{label}</dt>
+              <dd className="text-[2.75rem] leading-none font-semibold tracking-[-0.04em] text-navy lg:text-[3.75rem]">
+                {value}
+                <span className={unit === '+' ? 'text-amber-dark' : 'text-[0.4em] font-medium tracking-normal text-muted'}>
+                  {unit}
+                </span>
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
     </>
   )

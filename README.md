@@ -43,19 +43,25 @@ preferred_week, utm_source, utm_medium, utm_campaign, utm_content, page_url, sub
 | `form_start` | — (first focus in the form) |
 | `form_submit_success` | `property_type`, `role` |
 
-## Assets to replace before launch
+## Brand assets
 
-Everything in `public/` except `robots.txt` is a **placeholder** generated so layout, dimensions
-and Lighthouse could be verified:
+`public/brand/` holds the supplied TASLEEH logo (plus a white version for navy backgrounds and
+favicons cut from the mark) and the supplied App Store and Google Play badges.
+`badge-appgallery.svg` is a stand-in styled to match; swap in Huawei's official badge.
 
-- `hero.webp` / `hero-640.webp` (1200×900 / 640×480) — technician inspecting rooftop AC condensers
-- `survey.webp` / `survey-640.webp` (1200×900 / 640×480) — engineer with tablet in a plant room
-- `og.webp` (1200×630) — social card
-- `logo-tasleeh.svg`, `favicon.svg` — official logo artwork
-- `badge-*.svg` — official App Store, Google Play and AppGallery badges
+## Photos
 
-Keep the same file names and aspect ratios (WebP) and no code changes are needed.
-`scripts/make_placeholder_images.py` regenerates the placeholders.
+Every photo slot is listed in `src/images.js` (name, aspect ratio, widths, alt text and a short
+description of the shot). To add or replace photos:
+
+1. Save the originals in `photos-src/` named after the slot: `hero.jpg`, `audience.jpg`,
+   `svc-mep.jpg`, `svc-fabric.jpg`, `svc-soft.jpg`, `svc-fitout.jpg`, `survey.jpg`, `app.jpg`,
+   `about.jpg`. Optional focal point: `hero.focus` containing e.g. `0.5 0.3`.
+2. Run `python3 scripts/process_photos.py`. It crops to each slot's ratio, writes WebP files at
+   every width into `public/images/`, and rebuilds `og.webp` from the hero.
+3. Update the slot's `alt` in `src/images.js` so it describes the actual photo.
+
+Slots without a source photo get a neutral tonal placeholder.
 
 ## Copy and structured data
 

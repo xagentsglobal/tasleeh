@@ -4,7 +4,8 @@
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 
   --color-navy: #0e2a47;
-  --color-navy-deep: #0a2038;
+  --color-navy-deep: #091d33;
+  --color-navy-soft: #16385c;
   --color-amber: #f2a900;
   /* Darker amber for use on white: large numerals and icons only (3.56:1). */
   --color-amber-dark: #b37e00;
@@ -13,13 +14,28 @@
   --color-muted: #5b6675;
   /* Muted text on navy (7.3:1). */
   --color-mist: #aeb9c6;
-  --color-line: #dde2e8;
+  --color-line: #e3e7ec;
+
+  --radius-card: 28px;
+  --radius-tile: 20px;
+
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: 88px;
+    scroll-padding-top: 96px;
   }
   @media (prefers-reduced-motion: no-preference) {
     html {
@@ -30,12 +46,12 @@
     @apply bg-white font-sans text-ink antialiased;
     font-size: 1rem;
     line-height: 1.6;
+    font-feature-settings: 'cv11', 'ss01';
   }
   :focus-visible {
     outline: 3px solid var(--color-amber);
     outline-offset: 3px;
   }
-  /* On amber surfaces the amber ring would vanish. */
   .on-amber :focus-visible {
     outline-color: var(--color-navy);
   }
@@ -46,40 +62,74 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-[1160px] px-5 sm:px-6;
+    @apply mx-auto w-full max-w-[1160px] px-4 sm:px-6;
+  }
+  /* Full-bleed rounded panels sit inside a slim page gutter, as in the reference. */
+  .container-wide {
+    @apply mx-auto w-full max-w-[1400px] px-3 sm:px-4;
   }
   .section {
     @apply py-16 lg:py-24;
   }
   .h2 {
-    @apply text-[1.75rem] leading-tight font-bold tracking-tight text-navy sm:text-[2.125rem] lg:text-[2.5rem];
+    @apply text-[2rem] leading-[1.08] font-semibold tracking-[-0.025em] text-navy sm:text-[2.5rem] lg:text-[3rem];
+  }
+  .lead {
+    @apply text-[1.0625rem] leading-relaxed text-muted lg:text-lg;
+  }
+
+  /* Section index label, e.g. "01  Who it's for" */
+  .eyebrow {
+    @apply inline-flex w-fit items-center gap-2.5 rounded-full border border-line bg-white px-3.5 py-1.5 text-[0.8125rem] font-medium text-navy;
+  }
+  /* Index number: navy on white (small amber text would fail AA), with an amber dot. */
+  .eyebrow > span:first-child {
+    @apply inline-flex items-center gap-2 font-semibold text-navy tabular-nums before:h-1.5 before:w-1.5 before:rounded-full before:bg-amber;
+  }
+  .eyebrow-dark {
+    @apply border-white/15 bg-white/5 text-white;
+  }
+  .eyebrow-dark > span:first-child {
+    @apply text-amber;
+  }
+
+  .glass {
+    @apply border border-white/20 bg-white/10 backdrop-blur-md;
   }
 
   /* Buttons: combine .btn with one variant, e.g. class="btn btn-primary". */
   .btn {
-    @apply inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg px-6 text-base font-semibold
-      transition-colors duration-150;
+    @apply inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full px-7 text-base font-semibold whitespace-nowrap
+      transition-[background-color,color,box-shadow] duration-200;
   }
   .btn-primary {
     @apply bg-amber text-navy hover:bg-navy hover:text-white;
   }
-  /* On navy surfaces the navy hover state keeps a white edge so the button stays visible. */
   .btn-primary.on-navy {
     @apply hover:shadow-[inset_0_0_0_1.5px_#fff];
   }
   .btn-secondary {
     @apply border-[1.5px] border-navy bg-white text-navy hover:bg-navy hover:text-white;
   }
+  .btn-ghost-light {
+    @apply border-[1.5px] border-white/40 text-white hover:border-white hover:bg-white hover:text-navy;
+  }
   .btn-navy {
     @apply bg-navy text-white hover:bg-white hover:text-navy;
+  }
+  .btn-icon {
+    @apply -mr-3 flex h-9 w-9 items-center justify-center rounded-full bg-navy text-white transition-colors;
+  }
+  .btn-primary:hover .btn-icon {
+    @apply bg-amber text-navy;
   }
 
   .field-label {
     @apply mb-1.5 block text-sm font-semibold text-ink;
   }
   .field-input {
-    @apply block min-h-[48px] w-full rounded-lg border border-[#b8c1cc] bg-white px-3.5 py-2.5 text-base text-ink
-      placeholder:text-[#6b7685] focus:border-navy focus:outline-none focus-visible:ring-0;
+    @apply block min-h-[50px] w-full rounded-xl border border-[#c3cad3] bg-white px-4 py-2.5 text-base text-ink
+      transition-colors placeholder:text-[#6b7685] hover:border-[#9aa5b2] focus:border-navy focus:outline-none;
   }
   .field-input:focus-visible {
     outline: 3px solid var(--color-amber);

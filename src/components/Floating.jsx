@@ -1,37 +1,93 @@
-import { MessageCircle, Phone } from 'lucide-react'
+import { Mail, MessageCircle, Phone } from 'lucide-react'
 import { EMAIL, PHONE_DISPLAY } from '../content.js'
 import { CallLink, SurveyLink } from './links.jsx'
+import { StoreBadges } from './Sections.jsx'
+
+const footerNav = [
+  { href: '#how-it-works', label: 'How it works' },
+  { href: '#services', label: 'Services' },
+  { href: '#survey-includes', label: 'The survey' },
+  { href: '#faq', label: 'FAQ' },
+]
 
 export function Footer() {
+  const linkClass = 'text-white/85 transition-colors hover:text-amber'
   return (
-    <footer className="border-t border-white/10 bg-navy pt-10 pb-28 text-sm text-mist lg:pb-10">
-      <div className="container-page flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-        <div className="space-y-2">
-          <p>
-            <span className="font-semibold text-white">TASLEEH Facilities Management</span> · Part of Tiger Holding. Marina
-            Pinnacle, Floor 28, Office 2801, Dubai.
-          </p>
-          <p>
-            <CallLink location="footer" className="text-white underline-offset-4 hover:underline">
-              {PHONE_DISPLAY}
-            </CallLink>{' '}
-            ·{' '}
-            <a href={`mailto:${EMAIL}`} className="text-white underline-offset-4 hover:underline">
-              {EMAIL}
-            </a>
-          </p>
+    <footer className="container-wide pb-28 lg:pb-4">
+      <div className="overflow-hidden rounded-[var(--radius-card)] bg-navy-deep text-white">
+        <div className="container-page grid gap-12 py-14 lg:grid-cols-[minmax(0,5fr)_repeat(3,minmax(0,2fr))] lg:gap-10 lg:py-20">
+          <div>
+            <img
+              src="/brand/logo-tasleeh-white.webp"
+              alt="TASLEEH Facilities Management"
+              width="442"
+              height="131"
+              loading="lazy"
+              decoding="async"
+              className="h-12 w-auto"
+            />
+            <p className="mt-6 max-w-[22rem] text-mist">
+              TASLEEH Facilities Management · Part of Tiger Holding. Marina Pinnacle, Floor 28, Office 2801, Dubai.
+            </p>
+            <SurveyLink label="footer" className="btn btn-primary on-navy mt-8">
+              Book a survey
+            </SurveyLink>
+          </div>
+
+          <div>
+            <h2 className="text-sm font-semibold tracking-[0.12em] text-amber uppercase">Contact</h2>
+            <ul className="mt-5 space-y-3">
+              <li>
+                <CallLink location="footer" className={`inline-flex items-center gap-2 ${linkClass}`}>
+                  <Phone aria-hidden="true" className="h-4 w-4" strokeWidth={2} />
+                  {PHONE_DISPLAY}
+                </CallLink>
+              </li>
+              <li>
+                <a href={`mailto:${EMAIL}`} className={`inline-flex items-center gap-2 ${linkClass}`}>
+                  <Mail aria-hidden="true" className="h-4 w-4" strokeWidth={2} />
+                  {EMAIL}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <nav aria-label="Footer">
+            <h2 className="text-sm font-semibold tracking-[0.12em] text-amber uppercase">On this page</h2>
+            <ul className="mt-5 space-y-3">
+              {footerNav.map(({ href, label }) => (
+                <li key={href}>
+                  <a href={href} className={linkClass}>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <h2 className="text-sm font-semibold tracking-[0.12em] text-amber uppercase">TASLEEH app</h2>
+            <StoreBadges className="mt-5 flex-col items-start" />
+          </div>
         </div>
-        <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-6 gap-y-3">
-          <SurveyLink label="footer" className="font-semibold text-amber underline-offset-4 hover:underline">
-            Book a survey
-          </SurveyLink>
-          <a href="https://tasleeh.net/PrivacyPolicy.html" className="text-white underline-offset-4 hover:underline">
-            Privacy Policy
-          </a>
-          <a href="https://tasleeh.net/terms_en.html" className="text-white underline-offset-4 hover:underline">
-            Terms and Conditions
-          </a>
-        </nav>
+
+        <div className="border-t border-white/10">
+          <div className="container-page flex flex-col gap-4 py-6 text-sm text-mist sm:flex-row sm:items-center sm:justify-between">
+            <p>© {new Date().getFullYear()} TASLEEH Facilities Management · Part of Tiger Holding</p>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              <li>
+                <a href="https://tasleeh.net/PrivacyPolicy.html" className={linkClass}>
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="https://tasleeh.net/terms_en.html" className={linkClass}>
+                  Terms and Conditions
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </footer>
   )
@@ -41,13 +97,13 @@ export function Footer() {
 export function MobileBar({ visible }) {
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_-12px_rgba(14,42,71,0.25)] backdrop-blur transition-transform duration-200 motion-reduce:transition-none lg:hidden ${
-        visible ? 'translate-y-0' : 'pointer-events-none translate-y-full'
+      className={`fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 rounded-full border border-line bg-white/95 p-1.5 shadow-[0_12px_40px_-12px_rgba(14,42,71,0.45)] backdrop-blur transition-[transform,opacity] duration-300 motion-reduce:transition-none lg:hidden ${
+        visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-[150%] opacity-0'
       }`}
       aria-hidden={!visible}
       inert={!visible}
     >
-      <div className="mx-auto grid max-w-[600px] grid-cols-[auto_1fr] gap-3">
+      <div className="mx-auto grid max-w-[600px] grid-cols-[auto_1fr] gap-1.5">
         <CallLink location="sticky" className="btn btn-secondary px-5">
           <Phone aria-hidden="true" className="h-5 w-5" strokeWidth={2} />
           Call

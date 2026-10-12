@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { LoaderCircle, Phone } from 'lucide-react'
 import { PHONE_DISPLAY, maintenanceSetups, propertyTypes, roles } from '../content.js'
 import { trackFormStart, trackFormSubmitSuccess } from '../lib/analytics.js'
-import { CallLink, Tick } from './links.jsx'
+import { CallLink, Eyebrow, Tick } from './links.jsx'
 
 const WEBHOOK = import.meta.env.VITE_FORM_WEBHOOK
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
@@ -230,7 +230,7 @@ function SurveyForm({ onSuccess }) {
           {maintenanceSetups.map((option, i) => (
             <label
               key={option}
-              className="flex min-h-[48px] cursor-pointer items-center gap-3 rounded-lg border border-[#b8c1cc] px-3.5 py-2.5 text-[0.9375rem] has-[:checked]:border-navy has-[:checked]:bg-concrete"
+              className="flex min-h-[50px] cursor-pointer items-center gap-3 rounded-xl border border-[#c3cad3] transition-colors hover:border-[#9aa5b2] px-3.5 py-2.5 text-[0.9375rem] has-[:checked]:border-navy has-[:checked]:bg-concrete"
             >
               <input
                 type="radio"
@@ -270,7 +270,7 @@ function SurveyForm({ onSuccess }) {
           {status === 'submitting' && <LoaderCircle aria-hidden="true" className="h-5 w-5 animate-spin motion-reduce:animate-none" />}
           {status === 'submitting' ? 'Sending…' : 'Book my survey'}
         </button>
-        <p className="mt-3 text-sm text-muted">We'll call to confirm a time. Your details are used only to arrange the survey.</p>
+        <p className="mt-3 text-center text-sm text-muted">We'll call to confirm a time. Your details are used only to arrange the survey.</p>
       </div>
     </form>
   )
@@ -302,32 +302,51 @@ const reassurance = ['No charge, no obligation', 'One point of contact', 'Part o
 export default function SurveySection({ sectionRef }) {
   const [submitted, setSubmitted] = useState(false)
   return (
-    <section ref={sectionRef} aria-labelledby="book-title" className="section bg-navy text-white">
-      <div className="container-page grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-        <div className="lg:pt-4">
-          <h2 id="book-title" className="text-[1.75rem] leading-tight font-bold tracking-tight sm:text-[2.125rem] lg:text-[2.5rem]">
-            Book your post-summer property survey
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-white/90">
-            Tell us about the property and we'll arrange a time to walk it with you.
-          </p>
-          <ul className="mt-8 space-y-3.5">
-            {reassurance.map((item) => (
-              <li key={item} className="flex gap-3 font-medium">
-                <Tick onNavy className="mt-0.5" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-8 text-white/90">
-            Prefer to talk? Call{' '}
-            <CallLink location="form_aside" className="font-semibold text-white underline decoration-1 underline-offset-4 hover:decoration-2">
-              {PHONE_DISPLAY}
-            </CallLink>
-          </p>
-        </div>
-        <div className="rounded-2xl bg-white p-5 text-ink shadow-[0_24px_48px_-24px_rgba(0,0,0,0.5)] sm:p-8">
-          {submitted ? <SurveySuccess /> : <SurveyForm onSuccess={() => setSubmitted(true)} />}
+    <section ref={sectionRef} aria-labelledby="book-title" className="container-wide pt-16 pb-3 lg:pt-24 lg:pb-4">
+      <div className="relative overflow-hidden rounded-[var(--radius-card)] bg-navy text-white">
+        <svg aria-hidden="true" className="absolute -top-48 -left-48 h-[560px] w-[560px] text-white/[0.05]" viewBox="0 0 200 200" fill="none">
+          {[96, 76, 56, 36].map((r) => (
+            <circle key={r} cx="100" cy="100" r={r} stroke="currentColor" strokeWidth="1" />
+          ))}
+        </svg>
+        <div className="relative container-page grid gap-10 py-14 sm:py-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16 lg:py-24">
+          <div className="lg:sticky lg:top-28 lg:self-start lg:pt-2">
+            <Eyebrow index="09" dark>
+              Book a survey
+            </Eyebrow>
+            <h2
+              id="book-title"
+              className="mt-5 text-[2rem] leading-[1.08] font-semibold tracking-[-0.025em] text-balance sm:text-[2.5rem] lg:text-[3rem]"
+            >
+              Book your post-summer property survey
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-white/85">
+              Tell us about the property and we'll arrange a time to walk it with you.
+            </p>
+            <ul className="mt-8 grid gap-3">
+              {reassurance.map((item) => (
+                <li key={item} className="glass flex items-center gap-3 rounded-full px-4 py-3 font-medium">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-amber/15">
+                    <Tick onNavy className="h-4 w-4" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 flex flex-wrap items-center gap-x-2 text-white/85">
+              <Phone aria-hidden="true" className="h-[18px] w-[18px] text-amber" strokeWidth={2} />
+              Prefer to talk? Call
+              <CallLink
+                location="form_aside"
+                className="font-semibold text-white underline decoration-1 underline-offset-4 hover:decoration-2"
+              >
+                {PHONE_DISPLAY}
+              </CallLink>
+            </p>
+          </div>
+          <div className="rounded-[var(--radius-tile)] bg-white p-5 text-ink shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)] sm:p-9">
+            {submitted ? <SurveySuccess /> : <SurveyForm onSuccess={() => setSubmitted(true)} />}
+          </div>
         </div>
       </div>
     </section>
