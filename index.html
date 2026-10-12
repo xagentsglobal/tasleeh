@@ -48,18 +48,10 @@
       fetchpriority="high"
     />
 
-    <!-- Inter 400/500/600/700, loaded without blocking render -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-    </noscript>
+    <!-- Clash Display (headings) is self-hosted; preload the weight used by the H1. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/ClashDisplay-Semibold.woff2" crossorigin />
+
+    <!-- Poppins (body text) is self-hosted via @fontsource/poppins and bundled with the CSS. -->
 
     <!-- structured-data -->
 

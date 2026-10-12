@@ -32,11 +32,11 @@ const Hero = forwardRef(function Hero(_, ref) {
               <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
               Post-summer property survey
             </p>
-            <h1 id="hero-title" className="mt-6 font-semibold tracking-[-0.03em] text-balance">
+            <h1 id="hero-title" className="mt-6 font-semibold text-balance">
               <span className="block text-[2.125rem] leading-[1.08] sm:text-[3rem] lg:text-[3.5rem]">
                 Planned maintenance for UAE buildings.
               </span>
-              <span className="mt-3 block text-lg font-medium tracking-normal text-amber sm:text-xl">
+              <span className="mt-3 block text-xl font-medium tracking-normal text-amber sm:text-2xl">
                 One contract, one number, every trade.
               </span>
             </h1>
@@ -66,9 +66,9 @@ const Hero = forwardRef(function Hero(_, ref) {
           {stats.map(({ value, unit, label }) => (
             <div key={label} className="flex flex-col-reverse justify-end gap-2 border-l border-line pl-5 sm:pl-6">
               <dt className="max-w-[12rem] text-sm leading-snug text-muted">{label}</dt>
-              <dd className="text-[2.75rem] leading-none font-semibold tracking-[-0.04em] text-navy lg:text-[3.75rem]">
+              <dd className="font-display text-[2.75rem] leading-none font-semibold text-navy lg:text-[3.75rem]">
                 {value}
-                <span className={unit === '+' ? 'text-amber-dark' : 'text-[0.4em] font-medium tracking-normal text-muted'}>
+                <span className={unit === '+' ? 'text-amber-dark' : 'font-sans text-[0.35em] font-medium tracking-normal text-muted'}>
                   {unit}
                 </span>
               </dd>

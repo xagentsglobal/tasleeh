@@ -286,7 +286,7 @@ function SurveySuccess() {
       <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-concrete">
         <Tick className="h-7 w-7" />
       </div>
-      <p className="mx-auto mt-6 max-w-[26rem] text-xl leading-snug font-semibold text-navy">
+      <p className="mx-auto mt-6 max-w-[26rem] font-display text-xl leading-snug font-semibold text-navy">
         Thank you. Your survey request is in. Our team will call you to confirm a time.
       </p>
       <CallLink location="form_success" className="btn btn-primary mt-8 w-full sm:w-auto">
@@ -316,7 +316,7 @@ export default function SurveySection({ sectionRef }) {
             </Eyebrow>
             <h2
               id="book-title"
-              className="mt-5 text-[2rem] leading-[1.08] font-semibold tracking-[-0.025em] text-balance sm:text-[2.5rem] lg:text-[3rem]"
+              className="mt-5 text-[2rem] leading-[1.08] font-semibold text-balance sm:text-[2.5rem] lg:text-[3rem]"
             >
               Book your post-summer property survey
             </h2>

@@ -62,7 +62,7 @@ export function Audience() {
               <LeadIcon {...iconProps} className="h-6 w-6" />
             </span>
             <div className="mt-16">
-              <h3 className="text-2xl leading-tight font-semibold tracking-tight">{lead.title}</h3>
+              <h3 className="text-2xl leading-tight font-semibold">{lead.title}</h3>
               <p className="mt-3 text-white/80">{lead.text}</p>
             </div>
           </div>
@@ -123,7 +123,7 @@ export function CostOfWaiting() {
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:mt-14">
             <div className="rounded-[var(--radius-card)] bg-white p-7 sm:p-10">
               <p className="inline-flex rounded-full bg-concrete px-3 py-1 text-[0.8125rem] font-medium text-muted">Reactive</p>
-              <h3 className="mt-5 text-2xl font-semibold tracking-tight text-ink">Fix it when it breaks</h3>
+              <h3 className="mt-5 text-2xl font-semibold text-ink">Fix it when it breaks</h3>
               <ul className="mt-8 divide-y divide-line">
                 {reactive.map((item) => (
                   <li key={item} className="flex items-center gap-4 py-4 text-muted">
@@ -137,7 +137,7 @@ export function CostOfWaiting() {
             </div>
             <div className="rounded-[var(--radius-card)] bg-navy p-7 text-white sm:p-10">
               <p className="inline-flex rounded-full bg-amber px-3 py-1 text-[0.8125rem] font-semibold text-navy">Planned</p>
-              <h3 className="mt-5 text-2xl font-semibold tracking-tight">Plan it with TASLEEH</h3>
+              <h3 className="mt-5 text-2xl font-semibold">Plan it with TASLEEH</h3>
               <ul className="mt-8 divide-y divide-white/10">
                 {planned.map((item) => (
                   <li key={item} className="flex items-center gap-4 py-4 font-medium">
@@ -151,7 +151,7 @@ export function CostOfWaiting() {
             </div>
           </div>
 
-          <p className="mx-auto mt-14 max-w-[46rem] text-center text-[1.5rem] leading-snug font-medium tracking-tight text-balance text-navy sm:text-[1.875rem]">
+          <p className="mx-auto mt-14 max-w-[46rem] text-center font-display text-[1.5rem] leading-snug font-medium text-balance text-navy sm:text-[1.875rem]">
             Facility issues arise without warning. <span className="text-muted">A plan means fewer of them do.</span>
           </p>
         </div>
@@ -202,7 +202,7 @@ export function HowItWorks() {
               <div className="flex items-center justify-between">
                 <span
                   aria-hidden="true"
-                  className={`text-[3.25rem] leading-none font-semibold tracking-[-0.04em] tabular-nums ${
+                  className={`font-display text-[3.25rem] leading-none font-semibold tabular-nums ${
                     i === 0 ? 'text-amber' : 'text-amber-dark'
                   }`}
                 >
@@ -310,7 +310,7 @@ export function CtaBand() {
           ))}
         </svg>
         <div className="relative container-page flex flex-col items-start gap-8 py-14 lg:flex-row lg:items-center lg:justify-between lg:py-16">
-          <p className="max-w-[42rem] text-[1.625rem] leading-[1.2] font-semibold tracking-tight text-balance text-navy sm:text-[2.125rem]">
+          <p className="max-w-[42rem] font-display text-[1.625rem] leading-[1.2] font-semibold text-balance text-navy sm:text-[2.125rem]">
             Book your survey in October and start the winter with a plan, not a backlog.
           </p>
           <SurveyLink label="band" className="btn btn-navy w-full shrink-0 pr-2 sm:w-auto">
@@ -429,7 +429,7 @@ export function OccupantApp() {
           <Eyebrow index="06" dark>
             For your occupants
           </Eyebrow>
-          <h2 id="app-title" className="mt-5 text-[1.75rem] leading-[1.12] font-semibold tracking-[-0.02em] text-balance sm:text-[2.25rem]">
+          <h2 id="app-title" className="mt-5 text-[1.75rem] leading-[1.12] font-semibold text-balance sm:text-[2.25rem]">
             Your residents and tenants can raise requests in the TASLEEH app
           </h2>
           <p className="mt-5 max-w-[34rem] leading-relaxed text-white/80">
@@ -469,7 +469,7 @@ export function About() {
             </h2>
           </div>
           <div>
-            <p className="text-[1.25rem] leading-[1.55] tracking-[-0.01em] text-ink sm:text-[1.5rem]">
+            <p className="text-[1.125rem] leading-[1.65] text-ink sm:text-[1.3125rem]">
               TASLEEH is part of Tiger Holding, founded in 1976, with 270 completed projects and 12,000 employees across real
               estate, contracting, hospitality and facilities management.{' '}
               <span className="text-muted">
@@ -487,7 +487,7 @@ export function About() {
             {groupFacts.map(({ value, label }) => (
               <div key={label} className="glass flex flex-col-reverse gap-1 rounded-2xl bg-navy/55 p-3 text-white sm:p-5">
                 <dt className="text-xs leading-snug text-white/80 sm:text-sm">{label}</dt>
-                <dd className="text-xl font-semibold tracking-tight sm:text-[2rem] sm:leading-none">{value}</dd>
+                <dd className="font-display text-xl font-semibold sm:text-[2rem] sm:leading-none">{value}</dd>
               </div>
             ))}
           </dl>

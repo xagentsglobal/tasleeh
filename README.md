@@ -3,7 +3,7 @@
 Single-page lead-generation site for TASLEEH Facilities Management (part of Tiger Holding).
 One conversion: book a post-summer property survey. Secondary action: call 800 222 333.
 
-React 19 + Vite + Tailwind CSS v4, Lucide icons, Inter from Google Fonts. The production build is
+React 19 + Vite + Tailwind CSS v4, Lucide icons. Headings use Clash Display (self-hosted in `public/fonts/`), body text uses Poppins (self-hosted via `@fontsource/poppins`). The production build is
 prerendered to static HTML (`scripts/prerender.js`) and hydrated on the client.
 
 ## Run
