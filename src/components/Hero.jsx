@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { Phone } from 'lucide-react'
 import { PHONE_DISPLAY } from '../content.js'
-import { CallLink, Photo, SurveyButton, Tick } from './links.jsx'
+import { CallLink, Photo, SurveyButton } from './links.jsx'
 
 const stats = [
   { value: '50', unit: ' years', label: 'Tiger Holding group experience' },
@@ -21,56 +21,42 @@ const Hero = forwardRef(function Hero(_, ref) {
             sizes="(min-width: 1400px) 1376px, 100vw"
             className="absolute inset-0 -z-20 h-full w-full object-cover"
           />
-          {/* The one permitted gradient: hero image overlay for legibility. */}
+          {/* The one permitted gradient: hero image overlay, darker at the centre band for legibility. */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(9,29,51,0.55)_0%,rgba(9,29,51,0.72)_45%,rgba(9,29,51,0.95)_100%)] lg:bg-[linear-gradient(90deg,rgba(9,29,51,0.94)_0%,rgba(9,29,51,0.78)_42%,rgba(9,29,51,0.15)_80%)]"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(9,29,51,0.62)_0%,rgba(9,29,51,0.78)_55%,rgba(9,29,51,0.9)_100%)]"
           />
 
-          <div className="grid min-h-[620px] items-end gap-10 px-5 pt-28 pb-6 sm:px-10 sm:pb-10 lg:min-h-[700px] lg:grid-cols-[minmax(0,1fr)_340px] lg:px-14 lg:pt-36 lg:pb-14">
-            <div className="max-w-[44rem]">
-              <p className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-[0.75rem] font-semibold tracking-[0.14em] text-amber uppercase">
-                <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
-                Post-summer property survey
-              </p>
-              <h1
-                id="hero-title"
-                className="mt-6 text-[2.25rem] leading-[1.04] font-semibold tracking-[-0.03em] text-balance sm:text-[3.25rem] lg:text-[4rem]"
+          <div className="mx-auto flex min-h-[560px] max-w-[52rem] flex-col items-center justify-center px-5 py-20 text-center sm:min-h-[600px] sm:px-10 lg:min-h-[640px] lg:py-24">
+            <p className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-[0.75rem] font-semibold tracking-[0.14em] text-amber uppercase">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
+              Post-summer property survey
+            </p>
+            <h1 id="hero-title" className="mt-6 font-semibold tracking-[-0.03em] text-balance">
+              <span className="block text-[2.125rem] leading-[1.08] sm:text-[3rem] lg:text-[3.5rem]">
+                Planned maintenance for UAE buildings.
+              </span>
+              <span className="mt-3 block text-lg font-medium tracking-normal text-amber sm:text-xl">
+                One contract, one number, every trade.
+              </span>
+            </h1>
+            <p className="mt-5 max-w-[34rem] text-base leading-relaxed text-white/80 sm:text-[1.0625rem]">
+              Summer pushed your AC, electrical and plumbing to their limit. We'll find what it left behind and plan next
+              year's maintenance before the call-outs start.
+            </p>
+            <div className="mt-8 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:gap-5">
+              <SurveyButton label="hero" className="on-navy w-full sm:w-auto">
+                Book a post-summer survey
+              </SurveyButton>
+              <CallLink
+                location="hero"
+                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full font-semibold text-white underline decoration-1 underline-offset-[6px] hover:decoration-2"
               >
-                Planned maintenance for UAE buildings.{' '}
-                <span className="text-white/75">One contract, one number, every trade.</span>
-              </h1>
-              <p className="mt-6 max-w-[36rem] text-[1.0625rem] leading-relaxed text-white/85 sm:text-lg">
-                Summer has just pushed your AC, electrical and plumbing systems to their limit. We'll walk your property, find
-                what it left behind, and hand you a maintenance plan that stops next summer's call-outs before they start.
-              </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-                <SurveyButton label="hero" className="on-navy w-full sm:w-auto">
-                  Book a post-summer survey
-                </SurveyButton>
-                <CallLink
-                  location="hero"
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full font-semibold text-white underline decoration-1 underline-offset-[6px] hover:decoration-2 sm:justify-start"
-                >
-                  <Phone aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={2} />
-                  Or call {PHONE_DISPLAY}
-                </CallLink>
-              </div>
-              <p className="mt-5 text-sm text-mist">For residential, commercial and hospitality buildings in the UAE.</p>
+                <Phone aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={2} />
+                Or call {PHONE_DISPLAY}
+              </CallLink>
             </div>
-
-            {/* Glass summary card, echoing the reference's floating panels */}
-            <div className="glass hidden rounded-[var(--radius-tile)] p-6 lg:block">
-              <p className="text-[0.75rem] font-semibold tracking-[0.14em] text-amber uppercase">The survey</p>
-              <ul className="mt-4 space-y-3 text-[0.9375rem] text-white">
-                {['No charge, no obligation', 'One point of contact', 'Part of Tiger Holding'].map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <Tick onNavy />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p className="mt-6 text-sm text-mist">For residential, commercial and hospitality buildings in the UAE.</p>
           </div>
         </div>
       </section>
